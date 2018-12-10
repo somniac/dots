@@ -1,13 +1,47 @@
 # .bashrc
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
+# Some random color variables to make things pretty!
 
-if [ -f /home/twhite/.bash_aliases ]; then
-	. /home/twhite/.bash_aliases
-fi
+GREEN="\033[0;32m"
+BLUE="\033[0;34m"
+RED="\033[0;31m"
+NOC="\033[0m"
+
+#Currently not using an extra alias file... but I want the syntax as a reminder
+
+#if [ -f /Users/$USER/.bash_aliases ]; then
+#	. /Users/$USER/.bash_aliases
+#fi
+
 # User specific aliases and functions
-alias ls='ls --color'
 
+# This will probably grow over time. MAC aliases are different, change them.
+
+if [ $(uname) == 'Darwin' ]; then
+  alias ls='ls -G'
+else
+  alias ls='ls --color'
+fi
+
+#I hate seeing my THD computer name. Make it something not that.
+
+if [ $HOSTNAME == 'C02WF4UXHTD6MBP' ]; then
+  myhost='som'
+else
+  myhost=$HOSTNAME
+fi
+
+#Set the prompt red if you sudo into root
+
+if [ $USER != 'root' ]; then
+  ps1c=$GREEN
+else
+  ps1c=$RED
+fi
+
+#Pretty prompt. the \u is username and the \w is working directory.
+
+PS1="$ps1c[$myhost-\u]$BLUE(\w)$NOC>"
+
+PATH=$PATH
+export PATH=$PATH:~/bin
