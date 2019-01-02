@@ -2,10 +2,10 @@
 
 # Some random color variables to make things pretty!
 
-GREEN="\033[0;32m"
-BLUE="\033[0;34m"
-RED="\033[0;31m"
-NOC="\033[0m"
+GREEN="\[\033[0;32m\]"
+BLUE="\[\033[0;34m\]"
+RED="\[\033[0;31m\]"
+NOC="\[\033[0m\]"
 
 #Currently not using an extra alias file... but I want the syntax as a reminder
 
@@ -44,4 +44,15 @@ fi
 PS1="$ps1c[$myhost-\u]$BLUE(\w)$NOC>"
 
 PATH=$PATH
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin:~/local-scripts/
+
+HISTTIMEFORMAT="%F %T: "
+shopt -s histappend
+HISTFILESIZE=999999
+HISTSIZE=999999
+HISTCONTROL=ignoreboth
+export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
+
+#PROMPT_COMMAND='history -a'
+shopt -s cmdhist
+shopt -s checkwinsize
