@@ -25,7 +25,7 @@ fi
 
 #I hate seeing my THD computer name. Make it something not that.
 
-if [ $HOSTNAME == 'C02WF4UXHTD6MBP' ]; then
+if [ $HOSTNAME == 'D25T409CGQ17IM' ]; then
   myhost='som'
 else
   myhost=$HOSTNAME
@@ -56,3 +56,10 @@ export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:
 #PROMPT_COMMAND='history -a'
 shopt -s cmdhist
 shopt -s checkwinsize
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/Shared/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/Shared/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/Shared/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/Shared/Downloads/google-cloud-sdk/completion.bash.inc'; fi
